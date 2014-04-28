@@ -1,0 +1,1 @@
+# Isopsephy - greek letter, word and phrase numerical value evaluator
