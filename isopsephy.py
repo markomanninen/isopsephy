@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
+# file: isopsephy.py
 
 import re
 import pandas as pd
