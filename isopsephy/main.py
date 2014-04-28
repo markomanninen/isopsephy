@@ -4,6 +4,7 @@
 
 import re
 import pandas as pd
+from tagpy import helper as h, table
 
 data = {}
 
@@ -447,6 +448,20 @@ def find_number(a, total):
             u += 1
     return res
 
+def find_cumulative_indices(a, total):
+    u = 0
+    y = 0
+    res = []
+    l = len(a)
+    for v in range(0, l):
+        y += a[v]
+        while y >= total:
+            if y == total:
+                res.append(range(u, v+1))
+            y -= a[u]
+            u += 1
+    return res or ''
+
 def search_by_num(text, num):
     return list2string(find_number(string2list(text), num))
 
@@ -466,7 +481,7 @@ def prepare_digital_operation(num):
     return map(int, str(num).replace('0', '').replace('.', '').replace(',', ''))
 
 def char_table(text, mod = 9, capitalize = None, html = False):
-    data = dict([key, []] for key in ['letter', 'transliteration', 'isopsephy', 'digital_sum', 'word'])
+    data = dict([key, []] for key in ['index', 'letter', 'transliteration', 'isopsephy', 'digital_sum', 'digital_root', 'word'])
     # split text to columns: #, letter, translit, num, mod, word
     if capitalize == True:
         text = to_roman(text).upper()
@@ -474,17 +489,50 @@ def char_table(text, mod = 9, capitalize = None, html = False):
         text = to_roman(text).lower()
     else:
         text = to_roman(text)
+
     for word in text.split(" "):
+        i = 0
         for letter in word:
+            i = i + 1
+            data['index'].append(i)
             data['letter'].append(to_greek(letter))
             data['transliteration'].append(letter)
             num = isopsephy(letter)
             data['isopsephy'].append(num)
-            data['digital_sum'].append(digital_root(num))
+            data['digital_root'].append(digital_root(num))
+            data['digital_sum'].append(digital_sum(num))
             data['word'].append(word)
     if html:
-        # create html table from result
-        return ""
+        tbl = table(Class="char-table")
+        tbl.addCaption(to_greek(text.upper()))
+        tr1 = h.tr() # greek
+        tr2 = h.tr() # roman
+        tr3 = h.tr() # isopsephy
+        tr4 = h.tr() # sum
+        i = 0
+        for word in text.split():
+            if i > 0:
+                tr1 << h.th("&nbsp;")+h.th("&nbsp;")
+                tr2 << h.td()+h.td(Class="empty-cell")
+                tr3 << h.td()+h.td(Class="empty-cell")
+                tr4 << h.td()+h.td()
+            num = isopsephy(word)
+            word_length = len(word)
+            tr4 << h.td("%s %s" % (num, h.sub(digital_root(num))), colspan=word_length)
+            i = i+1
+            for letter in word:
+                tr1 << h.th(letter)
+                tr2 << h.td(to_greek(letter))
+                tr3 << h.td(isopsephy(letter))
+        tbl.addHeadRow(tr1)
+        tbl.addBodyRow(tr2)
+        tbl.addBodyRow(tr3)
+        tbl.addFootRow(tr4)
+        num = isopsephy(text)
+        tbl.addFootRow(h.tr(h.td("%s %s" % (num, h.sub(digital_sum(num), " / ", digital_root(num))), 
+                                 colspan=len(text), 
+                                 style="border-top: solid 1px #ddd")))
+        return tbl
     else:
         return pd.DataFrame(data)
 
