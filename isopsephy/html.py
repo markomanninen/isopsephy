@@ -2,9 +2,13 @@
 # -*- coding: utf-8 -*-
 # file: html.py
 
+from IPython.display import HTML
 from tagpy import helper as h, table
 from math import digital_root, digital_sum
 from main import to_roman, to_greek, isopsephy
+
+def print_char_table(text, modulo = 9, capitalize = None):
+    return HTML(str(char_table(text, modulo, capitalize)))
 
 def char_table(text, modulo = 9, capitalize = None):
     # handle capitalization
