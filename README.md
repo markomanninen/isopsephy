@@ -3,5 +3,5 @@
 Notebooks:
 
 - [Introduction to isopsephy](http://nbviewer.ipython.org/github/markomanninen/isopsephy/blob/master/Introduction%20to%20isopsephy.ipynb?create=1)
-- [Isopsephy character data tables]()
+- [Isopsephy character data tables](http://nbviewer.ipython.org/github/markomanninen/isopsephy/blob/master/Isopsephy%20character%20data%20tables.ipynb?create=1)
 - [Isopsephy test cases](http://nbviewer.ipython.org/github/markomanninen/isopsephy/blob/master/Isopsephy%20test%20cases.ipynb?create=1)

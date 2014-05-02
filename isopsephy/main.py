@@ -435,4 +435,3 @@ def find(text, num, cumulative = False):
         return result
     else:
         return [words[idx] for idx in map(numbers.index, numbers) if numbers[idx] == num]
-            

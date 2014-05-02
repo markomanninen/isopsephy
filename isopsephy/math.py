@@ -16,10 +16,3 @@ def digital_product(num):
 def prepare_digital_operation(num):
     """ strip off 0|,|. and return a list of single digit integers from original number """
     return map(int, str(num).replace('0', '').replace('.', '').replace(',', ''))
-
-def digital_root_summary(df):
-    df2 = df.groupby('word').sum()
-    df2['digital_root'] = df2['digital_sum'].apply(digital_root)
-    df2['digital_product'] = df2['isopsephy'].apply(digital_product)
-    df2['digital_product_root'] = df2['digital_product'].apply(digital_root)
-    return df2
