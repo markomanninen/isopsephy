@@ -1,0 +1,89 @@
+/**
+ * Copyright: Marko Manninen, 04/2014 (https://www.github.com/markomanninen)
+ */
+.rendered_html table,
+.rendered_html tr,
+.rendered_html th,
+.rendered_html td {
+    border: 0
+}
+
+table.data {
+    color: black;
+    border: 0;
+	margin: 1.5em auto;
+	border-bottom: 1px solid #999;
+	border-collapse: collapse;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-moz-border-radius: 8px 8px 0 0;
+	border-radius: 8px 8px 0 0;
+	background: #444;
+}
+table.data caption {
+    margin-bottom: .75em;
+    text-align: center;
+	font-style: italic;
+}
+table.data td {
+	-moz-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+	transition: background 0.2s linear;
+	white-space: nowrap;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	padding: 0.4em 0.8em;
+	background: #fff;
+}
+table.data tfoot,
+table.data tbody {
+    outline-offset: -1px;
+    outline: 1px solid #ccc;
+}
+
+table.data thead {}
+table.data thead th {
+	border: none;
+    border-bottom: 2px solid #eee;
+	background: transparent;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+    padding: 0.4em 0.8em;
+}
+
+table.data tbody {}
+table.data tbody tr:hover td {
+	background: #ffe;
+    color: black;
+}
+table.data tbody tr td:hover {
+	background: #f5f6d2;
+}
+table.data tbody tr td:last-child {
+	text-align: center
+}
+
+table.data tbody tr th {
+	color: white;
+    padding: 0.4em 0.8em;
+    text-transform: uppercase
+}
+
+
+table.data tfoot {}
+table.data tfoot td {
+    padding: 0.4em 0.8em;
+	text-align: center;
+	font-style: italic;
+}
+
+table.data .right {
+    text-align: right
+}
+
+table.data tr.ok td {background-color: white;}
+table.data tr.failed td {background-color: red; color: white}
+table.data tr.error td {background-color: lightpink}
+table.data tbody.failures {}
+table.data tbody.errors {}
