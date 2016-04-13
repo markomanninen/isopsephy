@@ -1,5 +1,7 @@
 # Isopsephy - greek letter, word and phrase numerical value evaluator #
 
+Please see Abnum 3 library for more comprehensive and update version of the evaluator: https://github.com/markomanninen/abnum3
+
 Notebooks:
 
 - [Introduction to isopsephy](http://nbviewer.ipython.org/github/markomanninen/isopsephy/blob/master/Introduction%20to%20isopsephy.ipynb?create=1)
